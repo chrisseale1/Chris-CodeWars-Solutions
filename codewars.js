@@ -261,3 +261,285 @@ function saleHotdogs(n){
 function saleHotdogs(n){
   return (n < 5) ? n*100 : (n >=5 && n < 10) ? n*95 : n*90;
 }
+
+
+
+//#13      Conditional statement--switch
+/*Complete function howManydays, function accept 1 parameters:month, means the month of year, different month has different days (refer to the following table), return a number that how many days in this month(month is always greater than 0, less than or equal to 12).
+
++---------------+-------------+
+|    month      |    days     |
++---------------+-------------+
+|1,3,5,7,8,10,12|     31      |
++---------------+-------------+
+|4,6,9,11       |     30      |
++---------------+-------------+
+|2              |     28      |  (Do not consider the leap year)
++---------------+-------------+
+little tips: Use default for most of the cases can reduce your work.*/
+
+function howManydays(month) {
+  switch (month) {
+    case 4:
+    case 6:
+    case 9: 
+    case 11:
+      return 30
+    case 2:
+      return 28
+    default:
+      return 31
+  }
+}
+
+
+
+
+
+//#14   loop statement --while and do..while
+/* Coding in function padIt, function accept 2 parameters:
+
+1.str, it's a string representing the string to pad, we need pad some "*" at leftside or rightside of str
+
+2.n, it's a number, how many times to pad the string.
+Behaviour
+
+You need to write a loop statement within the function that loops n times. Each time through the loop it will add one * to str, alternating on which side it is padded: the first time will add a * to the left side of str, the second time will add a * to the right side, and so on.
+
+Finally, return the padded string.*/
+function padIt(str,n){
+  let count = 0;
+  let ast = "*";
+  let padStr = str;
+  while(count < n){
+    if(count % 2 !== 0){
+      padStr = padStr + ast;
+      count += 1;
+    } else {
+      padStr = ast + padStr; 
+      count += 1;
+    }
+  }
+  return padStr;
+}
+
+
+
+//#15    loop statement --for
+/*Coding in function pickIt, function accept 1 parameter:arr, it's a number array, we need traverse arr by using for loop, if element is odd number, push it to array odd, if it's a even number, push it to array even.
+
+I've defined two array odd and even in the function, and also wrote the return statement. your work is write a for loop.*/
+function pickIt(arr){
+  var odd=[];
+  var even=[];
+  for(let i = 0; i < arr.length; i++){
+    if(arr[i] % 2 !== 0){
+      odd.push(arr[i]);
+    } else {
+      even.push(arr[i]);
+    }
+  }
+  return [odd,even];
+}
+//or
+function pickIt(arr){
+  var odd=[];
+  var even=[];
+  for(let i = 0; i < arr.length; i++){
+    (arr[i] % 2 !== 0) ? odd.push(arr[i]) : even.push(arr[i]);
+  }
+  return [odd,even];
+}
+
+
+
+
+//#16     loop statement --break,continue
+/*Coding in function grabDoll. function accept 1 parameter:dolls. it's a string array, a list of some dolls.
+You need traverse dolls by using for loop. If element is "Hello Kitty" or "Barbie doll", you should push it to a bag(bag is an array, I've defined in the function); 
+if it's other strings, we should use continue skip it.
+When the bag has three element, bag is full. You should use break jump out the loop; If bag is not full, you should traverse dolls until the last element.
+Return the bag after for loop finished.
+You should use for, break and continue in your code. otherwise, your solution may not pass this kata.*/
+function grabDoll(dolls){
+  var bag=[];
+  for(let i = 0; i < dolls.length; i++){
+    if(dolls[i] === "Hello Kitty" || dolls[i] === "Barbie doll"){
+      bag.push(dolls[i]);
+      if(bag.length === 3){
+        break;
+      }
+    } else {
+      continue;
+    }
+  }
+  return bag;
+}
+
+
+
+
+//#17   loop statement --for..in and for..of
+/*
+Coding in function giveMeFive, function accept 1 parameter:obj, it's an object.
+You need to the traverse the obj, if the length of the object key equals to 5, 
+then push the key value to the array (you need to define the array by yourself, 
+this time I won't help you). Additionally push the value to the array as well, 
+if the length of the value is equal to 5.
+Return the five after works finished.
+You should use for..in in your code, otherwise, your solution may not pass this
+kata. Don't learn bad habits from those lazy guys ;-)*/
+
+function giveMeFive(obj){
+  let newArr = [];
+  for(key in obj){
+    if(key.length === 5){
+      newArr.push(key);
+    }
+    if(obj[key].length === 5){
+      newArr.push(obj[key]);
+    }
+  }
+  return newArr;
+}
+
+
+
+//#18    Number object and its properties
+/*Coding in function whatNumberIsIt. function accept 1 parameter:n. it's a number.
+
+To judge the number n. If n is one of the above five constants, return one of these string:
+
+  "Input number is Number.MAX_VALUE"
+  "Input number is Number.MIN_VALUE"
+  "Input number is Number.NaN"
+  "Input number is Number.NEGATIVE_INFINITY"
+  "Input number is Number.POSITIVE_INFINITY"
+Other values should return "Input number is xxx". xxx means this number.
+
+For example:
+
+  whatNumberIsIt(1/0) should return "Input number is Number.POSITIVE_INFINITY"
+  whatNumberIsIt(100) should return "Input number is 100"
+What you need to think about is how to judge it correctly and effectively and don't forget isNaN().*/
+
+function whatNumberIsIt(n){
+  switch(n){
+    case Number.MAX_VALUE: return ("Input number is Number.MAX_VALUE"); 
+    case Number.MIN_VALUE: return  ("Input number is Number.MIN_VALUE");
+    case Number.POSITIVE_INFINITY: return ("Input number is Number.POSITIVE_INFINITY");
+    case Number.NEGATIVE_INFINITY: return ("Input number is Number.NEGATIVE_INFINITY");
+    case Number(n) : return "Input number is " + n;
+    default: return "Input number is Number.NaN";
+  }
+}
+
+
+
+//#19    Methods of Number object--toString() and toLocaleString()
+/*Coding in function colorOf. function accept 3 parameter:r g b. It means value of color red green and blue. the value range is 0-255.
+
+Use toString(16) Convert numbers r g b to hex string form. at last, combine them to a web color code and return it.
+
+the color code should starting with "#". and then use 2 characters per color.
+
+for example:
+
+  colorOf(255,0,0) should return "#ff0000"
+  colorOf(0,111,0) should return "#006f00"
+  colorOf(1, 2 ,3) should return "#010203"*/
+
+const result = function ToHex(num){
+  return (num==0) ? '00' :(num<=9) ? `0${num}` : (num<=15) ? `0${num.toString(16)}` : num.toString(16);
+}
+function colorOf(r,g,b){
+  return '#'+ result(r) + result(g)+ result(b);
+}
+
+
+
+
+//20#  Methods of Number object--toFixed(), toExponential() and toPrecision()
+/*Coding in function howManySmaller, function accept 2 parameter:arr and
+ n. arr is a decimal array. n is a decimal.
+
+The first mission: let all elements in the array keep two decimal 
+places(No need to convert number n).
+
+The second mission: Traversal arr, count the number of the element which 
+smaller than n and return it.
+
+for example:
+
+  howManySmaller([1.234,1.235,1.228],1.24) should return 2
+  howManySmaller([1.1888,1.1868,1.1838],1.19) should return 1
+  howManySmaller([3.1288,3.1212,3.1205],3.1212) should return 2*/
+
+function howManySmaller(arr,n){
+  total = 0;
+  for (i = 0; i < arr.length; i++){  
+    if (arr[i].toFixed(2) < n){
+      total++;
+    } 
+  }
+  return total;
+}
+
+
+
+
+//21#  Methods of String object--slice(), substring() and substr()
+/*Coding in function cutIt, function accept 1 parameter:arr. arr is a string array.
+
+The first mission: Traversing arr, find the shortest string length.
+
+The second mission: Traversing arr again, intercept all strings to the shortest string 
+length(Start from index0). you can use one of slice() substring() or substr() do it.
+return the result after finished the work.
+
+for example:
+
+  cutIt(["ab","cde","fgh"]) should return ["ab","cd","fg"]
+  cutIt(["abc","defgh","ijklmn"]) should return ["abc","def","ijk"]
+  cutIt(["codewars","javascript","java"]) should return ["code","java","java"]*/
+function cutIt(arr){
+  let finalArr = [];
+  let shrstStr = "";
+  for(let i = 0; i < arr.length; i++){
+    if(shrstStr.length === 0){
+      shrstStr = arr[i];
+    } else if (arr[i].length < shrstStr.length){
+      shrstStr = arr[i];
+    }
+  }
+  for(let i = 0; i < arr.length; i++){
+    finalArr.push(arr[i].substr(0, shrstStr.length));
+  }
+  return finalArr;
+}
+
+
+
+//22#    Methods of String object--indexOf(), lastIndexOf() and search()
+/*Coding in function firstToLast, function accept 2 parameters:str and c. str is a string. c is a char.
+
+Please return the gap between the first position of c and the last position of c.
+
+If there are a lot of c in the str, should return a positive integer; If there is only one c in str, should return 0; If there is no c in the str, should return -1. Retrieval should not ignored the case.
+
+for example:
+
+  firstToLast("ababc","a") should return 2(2-0)
+  firstToLast("ababc","c") should return 0(4-4)
+  firstToLast("ababc","d") should return -1*/
+
+function firstToLast(str,c){
+  let countC = 0;
+  for(let i = 0; i < str.length; i++){
+    if(str[i] === c){
+      countC += 1;
+    } 
+  }
+  return (countC > 0) ? str.lastIndexOf(c) - str.search(c) : -1;
+}
+
