@@ -543,3 +543,96 @@ function firstToLast(str,c){
   return (countC > 0) ? str.lastIndexOf(c) - str.search(c) : -1;
 }
 
+
+
+
+
+//#23    Methods of String object--concat() split() and its good friend join()
+/*Coding in function splitAndMerge, function accept 2 parameters:str and sp. str is a sentence. sp is a char as separator.
+
+First we need to divide the sentence into words(Use separator space); and then divide each word into characters(Use separator empty string); and then merge each characters with the specified sp; at last merge all the words(Use separator space) and return it.
+
+for example:
+
+  splitAndMerge("My name is John"," ") should return "M y n a m e i s J o h n"
+  splitAndMerge("My name is John","-") should return "M-y n-a-m-e i-s J-o-h-n"
+  splitAndMerge("Hello World!",".") should return "H.e.l.l.o W.o.r.l.d.!"
+  splitAndMerge("Hello World!",",") should return "H,e,l,l,o W,o,r,l,d,!"*/
+
+function splitAndMerge(str,sp){
+  return str.split(" ").map(word => word.split("").join(sp)).join(" ");
+}   // oh yeah, that's right, I used the map function. I did that.
+
+
+
+
+//#24  Methods of String object--toUpperCase() toLowerCase() and replace()
+/*Coding in function alienLanguage, function accept 1 parameter:str. str is a sentence.
+
+We translate the sentence into an alien language according to the following rules:
+
+Each word in the sentence is separated by spaces. The last letter of each word in the sentence turns to lowercase, and the other letters are capitalized. Looks very strange? Because this is the form of alien language ;-)
+
+for example:
+
+  alienLanguage("My name is John") should return "My NAMe Is JOHn"
+  alienLanguage("this is an example") should return "THIs Is An EXAMPLe"
+  alienLanguage("Hello World") should return "HELLo WORLd"
+A small hint: The first conversion of the entire string will make the code easier*/
+function alienLanguage(str){
+  let words = str.toUpperCase().split(" ");
+  for (var i = 0; i < words.length; i++) {
+    let precedingChars = words[i].slice(0, -1);
+    let lastChar = words[i].slice(-1).toLowerCase();  
+    words[i] = precedingChars + lastChar;
+  }
+  return words.join(" ");
+}
+
+
+
+//#25    Methods of String object--charAt() charCodeAt() and fromCharCode()
+/*Coding in function topSecret, function accept 1 parameter:file. file is an encrypted string.
+
+Encryption using the right shift 3. Your job is to decrypt the file and read the contents of the file, and then answer my three questions. If the answer is correct, you will pass the test. Note: the decryption should be left shift; Shift is only for uppercase and lowercase letters, other characters will remain the same; The shift mode is a cyclic shift, for example:
+
+  character "A" after decryption should be "X" instead of ">"
+  character "B" after decryption should be "Y" instead of "?"
+  character "C" after decryption should be "Z" instead of "@"
+  character "a" after decryption should be "x" instead of "^"
+  character "b" after decryption should be "y" instead of "_"
+  character "c" after decryption should be "z" instead of "`"*/
+function topSecret(str){
+  var chars=str.split("");
+  for(i=0;i<chars.length;i++){
+    var tmp=chars[i].charCodeAt();
+    if(tmp>67&&tmp<91||tmp>99&&tmp<123)
+      tmp-=3;
+    else{
+        if(tmp<68&&tmp>64||tmp<100&&tmp>96)
+          tmp+=23;
+    }
+    chars[i]=String.fromCharCode(tmp);
+  }
+  return chars.join("");
+}
+//question1: The top secret file number is...
+answer1="3796";
+//question2: Super agent's name is...
+answer2="VLwrtK";
+//question3: He stole the treasure is...
+answer3="Smelly socks";
+
+
+
+
+//#26        Methods of String object--trim() and the string template
+/*This is the last lesson about the string object, we will learn the two knowledge used to format the string.
+The first is a simple method: trim(). Usage is very simple:
+Coding in function fiveLine, function accept 1 parameter:s. s is a string.
+
+Please return a string of 5 lines(newline symbol is \n). The first line has one s; Second line have two s; and so on..Fifth line have five s;
+
+Note1: The two sides of the parameter s may contain some whitespace, please clear them before using s.
+
+Note2: Using a string template can make your job easier.*/
