@@ -636,3 +636,97 @@ Please return a string of 5 lines(newline symbol is \n). The first line has one 
 Note1: The two sides of the parameter s may contain some whitespace, please clear them before using s.
 
 Note2: Using a string template can make your job easier.*/
+function fiveLine(s){
+  let sT = s.trim();
+  return(`${sT}\n${sT}${sT}\n${sT}${sT}${sT}\n${sT}${sT}${sT}${sT}\n${sT}${sT}${sT}${sT}${sT}`);
+}
+
+
+
+//#27       Arrow function,spread operator and deconstruction
+/*Create a function shuffleIt. The function accepts two or more parameters.
+ The first parameter arr is an array of numbers, followed by an arbitrary number 
+ of numeric arrays. Each numeric array contains two numbers, which are indices for 
+ elements in arr (the numbers will always be within bounds). For every such array, 
+ swap the elements. Try to use all your new skills: arrow functions, the spread operator, 
+ destructuring, and rest parameters.
+
+Example:
+
+  shuffleIt([1,2,3,4,5],[1,2]) should return [1,3,2,4,5]
+  shuffleIt([1,2,3,4,5],[1,2],[3,4]) should return [1,3,2,5,4]
+  shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) should return [1,3,5,2,4]*/
+
+const shuffleIt=(arr,...numarr)=>{
+  for ([a,b] of numarr) [arr[a],arr[b]]=[arr[b],arr[a]];
+  return arr;
+}
+
+
+
+
+//#30       methods of arrayObject---push(), pop(), shift() and unshift()
+/*Coding in function infiniteLoop. function accept 3 parameters. The 1st parameter is arr, it's a 2D array, it contains three 1D array. The 2nd parameter is d ，it's a string. The 3rd parameter is n, it's a number.
+
+You can think of arr as a moat, the elements of arr like water constantly flow in. 
+The direction of flow is controlled by the parameter d. The value of d can be "left" or 
+"right". "left" means the "river" moves to the left. All elements in the 1D array are to 
+the left moving n position, if beyond the bounds of the array and the element is moved to 
+the tail on the left side of the array; if it exceeds the left boundary element would be 
+moved to the tail of 3rd array(like a circle). Right is also similar to the operation, but 
+it is moving to the right.
+
+Finally, return arr.
+
+Example:
+
+  infiniteLoop( [[1,2,3],[4,5,6],[7,8,9]],"left",1) 
+  should return [[2,3,4],[5,6,7],[8,9,1]]
+  infiniteLoop( [[1,2,3],[4,5,6],[7,8,9]],"right",1) 
+  should return [[9,1,2],[3,4,5],[6,7,8]]
+  infiniteLoop( [[1,2],[3,4,5,6],[7,8,9,10]],"left",2) 
+  should return [[3,4],[5,6,7,8],[9,10,1,2]]   */
+function infiniteLoop(arr,d,n){
+  for (var i = 1; i <= n; i++){
+    if (d === "left"){
+        arr[2].push(arr[0].shift());
+        arr[1].push(arr[2].shift());
+        arr[0].push(arr[1].shift());
+    }
+    if (d === "right"){
+        arr[0].unshift(arr[2].pop());
+        arr[1].unshift(arr[0].pop());
+        arr[2].unshift(arr[1].pop());
+    }
+  }
+  return arr;
+}
+
+
+
+//#31    methods of arrayObject---splice() and slice()
+/*  Coding in function threeInOne. function accept 1 parameters arr, 
+it's a 1D number array. Your task is to merge each of the 3 elements 
+into 1 elements (sum value) and return the result.
+
+Note1: You should not modify the original array.
+
+Note2: Because this is a beginner Kata, and due to the author's mercy ;-), 
+so you do not have to verify the validity of the parameter, and do not worry 
+about the number of elements of the array is not a multiple of 3.
+
+Example:
+
+  threeInOne( [1,2,3]) should return [6]
+  threeInOne( [1,2,3,4,5,6]) should return [6,15]
+  threeInOne( [1,2,3,4,5,6,7,8,9]) should return [6,15,24]
+  threeInOne( [1,3,5,2,4,6,7,7,7]) should return [9,12,21]   */
+  
+function threeInOne(arr){
+  let subArr = arr.slice();
+  let finalArr = [];
+  for(let i = 0; i < subArr.length; i+=3){
+    finalArr.push(subArr[i] + subArr[i+1] + subArr[i+2]);
+  }
+  return finalArr;
+};
