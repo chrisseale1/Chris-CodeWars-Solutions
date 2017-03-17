@@ -12,11 +12,11 @@ function boolToWord( bool ){
     return "No";
   } 
 }
-
 //or
 function boolToWord(bool){
     return bool ? "Yes" : "No";
 }
+
 
 
 
@@ -237,7 +237,10 @@ function trueOrFalse(val){
 
 
 //#12    if...else ternary operators
-/*Complete function saleHotdogs, function accept 1 parameters:n, n is the number of customers to buy hotdogs, different numbers have different prices (refer to the following table), return a number that the customer need to pay how much money.
+/*Complete function saleHotdogs, function accept 1 parameters:n,
+ n is the number of customers to buy hotdogs, different numbers have different
+prices (refer to the following table), return a number that the customer need 
+to pay how much money.
 
 +---------------+-------------+
 |  numbers n    | price(cents)|
@@ -304,7 +307,10 @@ function howManydays(month) {
 2.n, it's a number, how many times to pad the string.
 Behaviour
 
-You need to write a loop statement within the function that loops n times. Each time through the loop it will add one * to str, alternating on which side it is padded: the first time will add a * to the left side of str, the second time will add a * to the right side, and so on.
+You need to write a loop statement within the function that loops n times.
+Each time through the loop it will add one * to str, alternating on which side it 
+is padded: the first time will add a * to the left side of str, the second time will 
+add a * to the right side, and so on.
 
 Finally, return the padded string.*/
 function padIt(str,n){
@@ -326,9 +332,12 @@ function padIt(str,n){
 
 
 //#15    loop statement --for
-/*Coding in function pickIt, function accept 1 parameter:arr, it's a number array, we need traverse arr by using for loop, if element is odd number, push it to array odd, if it's a even number, push it to array even.
+/*Coding in function pickIt, function accept 1 parameter:arr, it's a number array, 
+we need traverse arr by using for loop, if element is odd number, push it to array odd, 
+if it's a even number, push it to array even.
 
-I've defined two array odd and even in the function, and also wrote the return statement. your work is write a for loop.*/
+I've defined two array odd and even in the function, and also wrote the return statement. 
+your work is write a for loop.*/
 function pickIt(arr){
   var odd=[];
   var even=[];
@@ -520,12 +529,16 @@ function cutIt(arr){
 
 
 
+
 //22#    Methods of String object--indexOf(), lastIndexOf() and search()
-/*Coding in function firstToLast, function accept 2 parameters:str and c. str is a string. c is a char.
+/*Coding in function firstToLast, function accept 2 parameters:str and c. 
+str is a string. c is a char.
 
 Please return the gap between the first position of c and the last position of c.
 
-If there are a lot of c in the str, should return a positive integer; If there is only one c in str, should return 0; If there is no c in the str, should return -1. Retrieval should not ignored the case.
+If there are a lot of c in the str, should return a positive integer; 
+If there is only one c in str, should return 0; If there is no c in the str, 
+should return -1. Retrieval should not ignored the case.
 
 for example:
 
@@ -540,7 +553,7 @@ function firstToLast(str,c){
       countC += 1;
     } 
   }
-  return (countC > 0) ? str.lastIndexOf(c) - str.search(c) : -1;
+  return (countC > 0) ? str.lastIndexOf(c) - str.indexOf(c) : -1;
 }
 
 
@@ -548,9 +561,13 @@ function firstToLast(str,c){
 
 
 //#23    Methods of String object--concat() split() and its good friend join()
-/*Coding in function splitAndMerge, function accept 2 parameters:str and sp. str is a sentence. sp is a char as separator.
+/*Coding in function splitAndMerge, function accept 2 parameters:str and sp. 
+str is a sentence. sp is a char as separator.
 
-First we need to divide the sentence into words(Use separator space); and then divide each word into characters(Use separator empty string); and then merge each characters with the specified sp; at last merge all the words(Use separator space) and return it.
+First we need to divide the sentence into words(Use separator space); and then 
+divide each word into characters(Use separator empty string); and then merge each 
+characters with the specified sp; at last merge all the words(Use separator space) and 
+return it.
 
 for example:
 
@@ -571,7 +588,9 @@ function splitAndMerge(str,sp){
 
 We translate the sentence into an alien language according to the following rules:
 
-Each word in the sentence is separated by spaces. The last letter of each word in the sentence turns to lowercase, and the other letters are capitalized. Looks very strange? Because this is the form of alien language ;-)
+Each word in the sentence is separated by spaces. The last letter of each word in the 
+sentence turns to lowercase, and the other letters are capitalized. Looks very strange? 
+Because this is the form of alien language ;-)
 
 for example:
 
@@ -592,9 +611,14 @@ function alienLanguage(str){
 
 
 //#25    Methods of String object--charAt() charCodeAt() and fromCharCode()
-/*Coding in function topSecret, function accept 1 parameter:file. file is an encrypted string.
+/*Coding in function topSecret, function accept 1 parameter:file. file is an encrypted 
+string.
 
-Encryption using the right shift 3. Your job is to decrypt the file and read the contents of the file, and then answer my three questions. If the answer is correct, you will pass the test. Note: the decryption should be left shift; Shift is only for uppercase and lowercase letters, other characters will remain the same; The shift mode is a cyclic shift, for example:
+Encryption using the right shift 3. Your job is to decrypt the file and read the contents 
+of the file, and then answer my three questions. If the answer is correct, you will pass 
+the test. Note: the decryption should be left shift; Shift is only for uppercase and 
+lowercase letters, other characters will remain the same; The shift mode is a cyclic 
+shift, for example:
 
   character "A" after decryption should be "X" instead of ">"
   character "B" after decryption should be "Y" instead of "?"
@@ -603,13 +627,12 @@ Encryption using the right shift 3. Your job is to decrypt the file and read the
   character "b" after decryption should be "y" instead of "_"
   character "c" after decryption should be "z" instead of "`"*/
 function topSecret(str){
-  var chars=str.split("");
-  for(i=0;i<chars.length;i++){
-    var tmp=chars[i].charCodeAt();
-    if(tmp>67&&tmp<91||tmp>99&&tmp<123)
+  let chars = str.split("");
+  for(i =0; i < chars.length; i++){
+    let tmp=chars[i].charCodeAt();
+    if(tmp > 67 && tmp < 91 || tmp > 99 && tmp < 123){
       tmp-=3;
-    else{
-        if(tmp<68&&tmp>64||tmp<100&&tmp>96)
+    } else if(tmp<68&&tmp>64||tmp<100&&tmp>96){
           tmp+=23;
     }
     chars[i]=String.fromCharCode(tmp);
@@ -730,3 +753,51 @@ function threeInOne(arr){
   }
   return finalArr;
 };
+
+
+
+//#32   objects....reverse()....sort()
+/*Coding in function sortIt. function accept 1 parameters arr, it's a number array. Your task is to sort the array according to the specified conditions, and returns a new array(should not modify the original array).
+
+conditions1: according to the number of elements(in ascending order) for example:
+
+  sortIt([1,1,1,2,2,3]) should return [3,2,2,1,1,1]
+  because [1,1,1,2,2,3] has one 3, two 2 and three 1
+conditions2: If the same number of elements, according to the number values(in descending order) for example:
+
+  sortIt([1,1,1,2,2,2,3,3,3]) should return [3,3,3,2,2,2,1,1,1]
+  because number of 3,2 and 1 both are three, then according to 3>2>1
+Comprehensive two conditions should be like this:
+
+  sortIt([1,2,3,4,4,5,5,6,6]) should return [3,2,1,6,6,5,5,4,4]     */
+
+function sortIt(arr){
+  let numberOf = {};
+  arr.forEach(x => numberOf[x] = (numberOf[x]||0) + 1);
+  return arr.slice().sort((x, y) => numberOf[x] - numberOf[y] || y - x);
+}
+
+
+
+
+//#33   methods of objects       map()
+/*Coding in function isolateIt. function accept 1 parameters arr, it's a string array. 
+Your task is to put a character "|" into the middle of each element.
+
+If the string length is an even number, use the insert method. 
+for example: "abcd" should became "ab|cd". "|" should be inserted between ab and cd.
+
+If the string length is an odd number, use the replacement method. 
+for example: "abcde" should became "ab|de". Character c will be replaced by |.
+
+The original array should not be changed, you need to return a new 
+array(if you use the map method, you do not need to worry about this).
+
+Some example:
+
+  isolateIt(["abcd","efgh"]) should return ["ab|cd","ef|gh"]
+  isolateIt(["abcde","fghij"]) should return ["ab|de","fg|ij"]
+  isolateIt(["1234","56789"]) should return ["12|34","56|89"]
+
+a little hint: Flexible use of slice() Will make the work more simple.    */
+
