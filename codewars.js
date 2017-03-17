@@ -629,11 +629,11 @@ shift, for example:
 function topSecret(str){
   let chars = str.split("");
   for(i =0; i < chars.length; i++){
-    let tmp=chars[i].charCodeAt();
+    let tmp = chars[i].charCodeAt();
     if(tmp > 67 && tmp < 91 || tmp > 99 && tmp < 123){
-      tmp-=3;
-    } else if(tmp<68&&tmp>64||tmp<100&&tmp>96){
-          tmp+=23;
+      tmp -= 3;
+    } else if(tmp < 68 && tmp > 64 || tmp < 100 && tmp > 96){
+          tmp += 23;
     }
     chars[i]=String.fromCharCode(tmp);
   }
@@ -681,7 +681,9 @@ Example:
   shuffleIt([1,2,3,4,5],[1,2],[3,4],[2,3]) should return [1,3,5,2,4]*/
 
 const shuffleIt=(arr,...numarr)=>{
-  for ([a,b] of numarr) [arr[a],arr[b]]=[arr[b],arr[a]];
+  for ([a,b] of numarr){
+    [arr[a],arr[b]]=[arr[b],arr[a]];
+  }
   return arr;
 }
 
@@ -689,7 +691,9 @@ const shuffleIt=(arr,...numarr)=>{
 
 
 //#30       methods of arrayObject---push(), pop(), shift() and unshift()
-/*Coding in function infiniteLoop. function accept 3 parameters. The 1st parameter is arr, it's a 2D array, it contains three 1D array. The 2nd parameter is d ，it's a string. The 3rd parameter is n, it's a number.
+/*Coding in function infiniteLoop. function accept 3 parameters. The 1st parameter 
+is arr, it's a 2D array, it contains three 1D array. The 2nd parameter is d ，
+it's a string. The 3rd parameter is n, it's a number.
 
 You can think of arr as a moat, the elements of arr like water constantly flow in. 
 The direction of flow is controlled by the parameter d. The value of d can be "left" or 
@@ -757,24 +761,39 @@ function threeInOne(arr){
 
 
 //#32   objects....reverse()....sort()
-/*Coding in function sortIt. function accept 1 parameters arr, it's a number array. Your task is to sort the array according to the specified conditions, and returns a new array(should not modify the original array).
+/*Coding in function sortIt. function accept 1 parameters arr, 
+it's a number array. Your task is to sort the array according to the specified 
+conditions, and returns a new array(should not modify the original array).
 
 conditions1: according to the number of elements(in ascending order) for example:
 
-  sortIt([1,1,1,2,2,3]) should return [3,2,2,1,1,1]
-  because [1,1,1,2,2,3] has one 3, two 2 and three 1
-conditions2: If the same number of elements, according to the number values(in descending order) for example:
+sortIt([1,1,1,2,2,3]) should return [3,2,2,1,1,1]
+because [1,1,1,2,2,3] has one 3, two 2 and three 1
 
-  sortIt([1,1,1,2,2,2,3,3,3]) should return [3,3,3,2,2,2,1,1,1]
-  because number of 3,2 and 1 both are three, then according to 3>2>1
+conditions2: If the same number of elements, according to the number values(in 
+descending order) for example:
+
+sortIt([1,1,1,2,2,2,3,3,3]) should return [3,3,3,2,2,2,1,1,1]
+because number of 3,2 and 1 both are three, then according to 3>2>1
 Comprehensive two conditions should be like this:
 
-  sortIt([1,2,3,4,4,5,5,6,6]) should return [3,2,1,6,6,5,5,4,4]     */
+sortIt([1,2,3,4,4,5,5,6,6]) should return [3,2,1,6,6,5,5,4,4]     */
 
 function sortIt(arr){
-  let numberOf = {};
-  arr.forEach(x => numberOf[x] = (numberOf[x]||0) + 1);
-  return arr.slice().sort((x, y) => numberOf[x] - numberOf[y] || y - x);
+  let out = arr.slice();
+  let count = {};
+  for(let n of out){
+    if (n in count){
+      count[n] = count[n]+1;
+    } else{
+      count[n] = 1;
+    }
+  }
+  out.sort((a,b) => {
+    if(count[a] === count[b]) return b - a;
+    else return count[a] - count[b];
+  })
+  return out;
 }
 
 
