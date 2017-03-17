@@ -790,8 +790,11 @@ function sortIt(arr){
     }
   }
   out.sort((a,b) => {
-    if(count[a] === count[b]) return b - a;
-    else return count[a] - count[b];
+    if(count[a] === count[b]){
+     return b - a;
+    } else {
+        return count[a] - count[b];
+    }
   })
   return out;
 }
@@ -820,3 +823,78 @@ Some example:
 
 a little hint: Flexible use of slice() Will make the work more simple.    */
 
+function isolateIt(arr){
+  return arr.map(item => {
+    if(item.length % 2 === 0){
+      return item.slice(0, item.length / 2) + '|' + item.slice(item.length / 2);
+    } else {
+      return item.slice(0, item.length / 2) + '|' + item.slice(item.length / 2 + 1);
+    }
+  })
+}
+
+
+
+
+
+//#34        Methods of Objects:  filter();
+/*Coding in function countGrade. function accept 1 parameters scores, 
+it's a number array. Your task is to count the grade distribution of the scores, 
+to return an object like this:
+
+  {S:888, A:888, B:888, C:888, D:888, X:888}
+Grading rules:
+
+  Grade S: Full marks(score=100)
+  Grade A: score<100 and score>=90
+  Grade B: score<90 and score>=80
+  Grade C: score<80 and score>=60
+  Grade D: score<60 and score>=0
+  Grade X: score=-1(The cheating guy gets a score like that)
+Some example:
+
+  countGrade([50,60,70,80,90,100]) should return {S:1, A:1, B:1, C:2, D:1, X:0}
+  countGrade([65,75,,85,85,95,100,100]) should return {S:2, A:1, B:2, C:2, D:0, X:0}
+  countGrade([-1,-1,-1,-1,-1,-1]) should return {S:0, A:0, B:0, C:0, D:0, X:6}     */
+function countGrade(scores){
+  let S = scores.filter(score => score === 100);
+  let A = scores.filter(score => score < 100 && score >= 90);
+  let B = scores.filter(score => score < 90 && score >= 80);
+  let C = scores.filter(score => score < 80 && score >= 60);
+  let D = scores.filter(score => score < 60 && score >= 0);
+  let X = scores.filter(score => score === -1);
+  let gradeDistribution = {S: S.length, A: A.length, B: B.length, C: C.length, D: D.length, X: X.length};
+  return gradeDistribution;
+}
+
+
+
+
+//#35      Methods of Objects: Every and Some;
+/*  Coding in function mirrorImage. function accept 1 parameter arr, it's a number array. Your task is find the first pair of mirror-image number and return as an array. The two number must be adjacent, and the returned array is in accordance with the order from left to right.
+
+What's the mirror-image number? for example:123 and 321 is a pair of mirror-image number. Two the same number of palindromes can also be seen as a pair of mirror-image number, such as 121 and 121.
+
+If no such number is found, return[-1,-1]
+
+Some example:
+
+  mirrorImage([11,22,33,33,22,11]) should return [33,33]
+  mirrorImage([454,86,57,75,16,88]) should return [57,75]
+  mirrorImage([454,0,57,0,16,88]) should return [-1,-1]    */
+function mirrorImage(arr){
+  var a = 0;
+  let b = 0;
+  let mirrorNumbers = [];
+  arr.some((x,i)=>{ 
+    a = arr[i];
+    b = arr[i+1];
+    if (b === undefined) { 
+        return a=-1,b=-1;
+    } else {
+        return (a === b || Number(a.toString().split('').reverse().join('')) == b) && a.toString().length === b.toString().length;
+    }
+ });
+  mirrorNumbers.push(a,b);
+  return mirrorNumbers; 
+}
