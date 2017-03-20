@@ -958,3 +958,69 @@ Some example:
   tailAndHead([111,2345,66,78,900]) should return 7293
   tailAndHead([35456,782,569,2454,875]) should return 12012  */
 
+function tailAndHead(arr){
+  return arr.reduce((a,b,i)=>a*(+((arr[i]+"")[0])+(arr[i-1]%10)))/arr[0];
+}
+
+
+
+
+//#38     methods of arrayObject --- indexOf(), toString(), and isArray()
+/*Coding in function blackAndWhite. function accept 1 parameter arr(a number array).
+
+If arr is not an array, we should return:
+  "It's a fake array"
+If arr contains elements 5 and 13, we should return:
+  "It's a black array"
+If arr does not contain 5 or 13, we should return:
+  "It's a white array"
+Some example:
+  blackAndWhite(5,13) should return "It's a fake array"
+  blackAndWhite([5,13]) should return "It's a black array"
+  blackAndWhite([5,12]) should return "It's a white array"
+Using string template and ternary operator can make your work easier.  */
+function blackAndWhite(arr){
+    if(Array.isArray(arr)!==true){
+        return "It's a fake array";
+    } else if(arr.indexOf(5)===-1||arr.indexOf(13)===-1) {
+        return "It's a white array";
+    }else{ 
+        return "It's a black array";
+    }
+}
+//or
+function blackAndWhite(arr){
+   return (Array.isArray(arr) !== true) ? "It's a fake array" : (arr.indexOf(5)===-1||arr.indexOf(13)===-1) ? "It's a white array" : "It's a black array";
+}
+
+
+
+//#39          methods of Math---round() ceil() and floor()
+/*Coding in function roundIt. function accept 1 parameter n. It's a number with a decimal point. Please use different methods based on the location of the decimal point, turn the number into an integer.
+
+If the decimal point is on the left side of the number (that is, the number on the left of the decimal point is less than that on the right), Using ceil() method.
+  roundIt(3.45) should return 4
+If the decimal point is on the right side of the number (that is, the number on the left of the decimal point is more than that on the right), Using floor() method.
+  roundIt(34.5) should return 34
+If the decimal point is on the middle of the number (that is, the number on the left of the decimal point is equals that on the right), Using round() method.
+  roundIt(34.56) should return 35    */
+
+function roundIt(n){
+    let[l, r] = n.toString().split('.');
+    let L = l.length;
+    let R = r.length;
+    if (L < R){ 
+        return Math.ceil(n);
+    } else if (R < L){ 
+        return Math.floor(n); 
+    } else{ 
+        return Math.round(n);
+    }
+};
+//or
+function roundIt(n){
+    let [l, r] = n.toString().split('.');
+    let L = l.length;
+    let R = r.length;
+    return (L < R) ? Math.ceil(n) : (R < L) ? Math.floor(n) : Math.round(n);
+}
