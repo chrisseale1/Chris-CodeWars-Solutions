@@ -1060,3 +1060,100 @@ function maxMin(arr1,arr2){
   return [max, min];
 };
 
+
+
+//#41    methods of Math---pow() sqrt() and cbrt()
+/*Coding in function cutCube. function accept 2 parameter: volume and n. 
+volume is the volume of a cube. If we cut the cube into n block. 
+please determine whether the length of the cube is an integer. return true or false.
+
+For exmaple:
+
+volume=27, it can be divided into 27 blocks, each small cube side length is 1
+
+  cutCube(27,27) should return true
+volume=512, it can be divided into 8 blocks, each small cube side length is 4
+
+  cutCube(512,8) should return true
+volume=512, it can be divided into 64 blocks, each small cube side length is 2
+
+  cutCube(512,64) should return true
+If the side length of small cube is not a integer, should return false.
+
+  cutCube(256,8) should return false
+  cutCube(27,3) should return false
+  cutCube(123,456) should return false
+If it can't be divided evenly into n small cubes, should return false too.
+
+  cutCube(50000,50) should return false
+  cutCube(256,4) should return false
+The two examples above seems to meet our requirements, but
+please note: a cube is unable to evenly divided into 50 pieces or 4 pieces. 
+Only cubic numbers(such as 8,27,64,125,216...) can be used to divide the cube evenly.  */
+function cutCube(volume,n){
+  if (Math.cbrt(n)%1==0) {
+    let blockSide = volume/n;
+    if (Math.cbrt(blockSide)%1==0){ 
+        return true;
+    } else { 
+        return false;
+    } 
+  } else { 
+    return false; 
+  }  
+}
+
+
+
+//#42           methods of Math---log() and its family
+/*Coding in function thinkingAndTesting.
+
+This time I won't explain to you how to do it. You need to look at the test 
+cases. Thinking and testing. solve this kata by yourself ;-)
+
+The only hint is: it is related to power.
+
+If you are interested in this form of kata, I recommend to you my Thinking and 
+Testing Series */
+function thinkingAndTesting(number,base){
+  return Math.abs(number - Math.pow(base, Math.floor( Math.log(number)/Math.log(base))));
+}
+
+
+
+//#43     methods of Math---kata author's lover:random()
+/* Coding in function rndCode. Your task is to generate a random verification code. 
+In accordance with the following rules:
+
+1) the code length should be 8;
+
+2) The 1st and 2nd characters should be two uppercase letters. The range is "ABCDEFGHIJKLM".
+
+3) The 3rd-6th characters should be four numbers.
+
+4) the 7th and 8th characters should be two symbols. The range is "~!@#$%^&*".
+
+5) If Your code runs 100 times, It should generate 100 non duplicate verification codes.
+
+Some valid verification code examples:
+
+  AB1234#$ MG6145$@ KJ2249@&
+  CD5678%^ IG7593~% FH8638@&
+  EF9012!@ GB7047%$ KD7604^%     */
+function rndCode(){
+  let firstTwo = [];
+  let nextThree = [];
+  let lastTwo = [];
+  let arr1 = "ABCDEFGHIJKLM";
+  let arr2 = "~!@#$%^&*";
+  for(let i= 0; i < 2; i++){
+    firstTwo.push(arr1[~~(arr1.length*Math.random())]);
+  }
+  for(let i = 0; i < 4; i++){
+   nextThree.push(~~(10*Math.random()));
+  }
+  for(let i= 0; i < 2; i++){
+    lastTwo.push(arr2[~~(arr2.length*Math.random())]);
+  }
+  return firstTwo.join("") + nextThree.join("") + lastTwo.join("");
+}
