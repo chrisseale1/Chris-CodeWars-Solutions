@@ -28,3 +28,12 @@ def even_or_odd(number):
 #The code does not execute properly. Try to figure out why.
 def multiply(a, b):
   return a * b
+
+
+
+
+#4  Remove String Spaces
+#Simple, remove the spaces from the string, then return the resultant string
+def no_space(x):
+    listX = x.split() 
+    return ''.join(listX)
