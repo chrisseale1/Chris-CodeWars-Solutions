@@ -331,7 +331,33 @@ SELECT
   COUNT(*) FILTER (WHERE staff_id = 1) AS "mike_count",
   SUM(amount) FILTER (WHERE staff_id = 1) AS "mike_amount",
   COUNT(*) FILTER (WHERE staff_id = 2) AS "jon_count",
-  SUM(amount) FILTER (WHERE staff_id = 2) AS "jon_amount""
+  SUM(amount) FILTER (WHERE staff_id = 2) AS "jon_amount"
 FROM payment
 GROUP BY month
 ORDER BY month;
+
+
+
+
+#16        SQL Basics: Top 10 customers by total payments amount
+/*Your are working for a company that wants to reward its top 10 customers with a free gift. You have been asked to generate a simple report that returns the top 10 customers by total amount spent. Total number of payments has also been requested.
+
+The query should output the following columns:
+
+customer_id [int4]
+email [varchar]
+payments_count [int]
+total_amount [float]
+and has the following requirements:
+
+only returns the 10 top customers, ordered by total amount spent*/
+
+
+
+
+SELECT c.customer_id, c.email, p.payments_count, p.total_amount
+FROM customer AS c
+INNER JOIN (select customer_id, CAST( sum(amount) AS float) AS "total_amount", COUNT(payment_id) AS "payments_count"
+            FROM payment GROUP BY customer_id) AS p ON p.customer_id = c.customer_id
+ORDER BY p.total_amount DESC
+LIMIT 10;
