@@ -230,3 +230,64 @@ SELECT
 FROM people
 GROUP BY clan
 ORDER BY total_points DESC
+
+
+
+#14    simple IN statement
+/*For this challenge you need to create a SELECT statement, this SELECT statement 
+will use an IN to check whether a department has had a sale with a price over 
+98.00 dollars.
+
+departments table schema
+
+id
+name
+sales table schema
+
+id
+department_id (department foreign key)
+name
+price
+card_name
+card_number
+transaction_date
+resultant table schema
+
+id
+name*/
+
+SELECT *
+  FROM departments AS d
+  WHERE d.id IN (
+      SELECT s.department_id
+        FROM sales AS s
+          WHERE s.price > 98.00
+  )
+
+
+#15  SIMPLE  RANK and JOIN
+SELECT
+  p.*,
+  COUNT(s) as sale_count, 
+  RANK() OVER (ORDER BY sum(s.price) DESC) as sale_rank
+FROM people p
+JOIN sales s ON s.people_id = p.id
+  GROUP BY p.id
+
+
+
+#16     SQL SIMPLE HAVING
+/*For this challenge you need to create a simple HAVING statement, you want to count how many people have the same age and return the groups with 10 or more people who have that age.
+
+people table schema
+
+id
+name
+age
+return table schema
+
+age
+total_people  */
+SELECT age, COUNT(*) AS "total_people"
+  FROM people
+  GROUP BY age HAVING COUNT(age) >= 10;
