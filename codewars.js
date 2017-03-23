@@ -1215,3 +1215,137 @@ function findSimilarity(str,word){
   var reg=new RegExp("^"+word.replace(/\B.\B/g,".")+"$");  
   return str.split(/ /).filter(x=>reg.test(x)).join(" ");
 };
+
+
+//#45       Regular Expression--"?", "*", "+" and "{}"
+/*This time you do not need coding in function. You just need to write a
+ regular expression that matches the specified numeric string. I've given 
+ the regular expression name: "regex", please don't modify the name.
+
+According to the following rules:
+
+1) The numeric string first digit should be "9".
+2) At the end of the number string there are at least four "0".
+3) It can also be a negative number(This means that the string may be 
+started by "-", maybe not)
+
+Some examples:
+
+  regex.test("90000") should return true
+  regex.test("-90000") should return true
+  regex.test("900000000") should return true
+  regex.test("91230000") should return true
+  regex.test("-91230000") should return true
+
+  regex.test("90001") should return false
+  regex.test("9000") should return false
+  regex.test("91230") should return false
+  regex.test("1-90000") should return false
+  regex.test("-90000123") should return false  */
+let regex=/^-?9\d*0{4}$/;
+
+
+
+//#46    Regular Expression--"|", "[]" and "()""
+/*This time you need to write a regular expression that matches all URL contained in the string.
+
+The rules:
+
+1) URL start with http:// or https://
+
+2) URL end with .com or .net
+
+3) The middle part of URL can use letters, numbers and dots
+
+4) Need to ignore case, and a string may contain multiple URLs
+
+5) Your regular expression name should be regex and your result should be a string array.
+
+Some examples:
+
+  "http://codewars.com".match(regex)
+  should return [ 'http://codewars.com' ]    
+  "http://www.codewars.com".match(regex)
+  should return [ 'http://www.codewars.com' ]
+  "HTTP://CODEWARS.COM".match(regex)
+  should return [ 'HTTP://CODEWARS.COM' ]
+  "https://www.codewars.com".match(regex)
+  should return [ 'https://www.codewars.com' ]
+  "http://www.codewars.net".match(regex)
+  should return [ 'http://www.codewars.net' ]
+  "1234http://www.codewars.comabcd".match(regex)
+  should return [ 'http://www.codewars.com' ]
+  "http://www.codewars1.com!@#$%http://www.codewars2.net".match(regex)
+  should return [ 'http://www.codewars1.com', 'http://www.codewars2.net' ]
+  "http://www.codewars.com.net".match(regex)
+  should return [ 'http://www.codewars.com.net' ]
+  "http://www.codewars.com.fak".match(regex)
+  should return [ 'http://www.codewars.com' ]
+
+  These examples should return null:
+  "ftp://www.codewars.com".match(regex)
+  "http://www.code#wars.com".match(regex)
+  "http://wwwcodewarscom".match(regex)
+  "http://www.codewars.org".match(regex)
+  "http://www . codewars . com".match(regex)
+  "http://mail@codewars.com".match(regex)   */
+
+
+  let regex= /https?:\/\/[a-z0-9.]+\.(?:com|net)/gi;
+
+
+
+
+//#47      Regular Expression--"\"
+/*You might have guessed the task. Yes, This time your task is to write a 
+  regular expressions matching all palindrome substring of a string.
+
+The rules:
+
+1) The string contains letters, numbers, underscores and spaces. space is the 
+separator. the substring means the whole of a substring that separated by spaces. 
+For example:
+  "aaa bcccd" should match a substring "aaa" , 
+  should not match "ccc", "ccc" is a part of substring "bcccd"
+2) Palindrome substring length range is 2-7. It means don't match the substring which 
+length=1 or length>7.
+3) A string may contain multiple palindrome substring.
+4) You should not ignore case.
+5) Your regular expression name should be regex and your result should be a string array.
+
+Some examples:
+
+  "aa bbb cccc".match(regex)             should return [ 'aa', 'bbb', 'cccc' ]
+  "aaa bcccd".match(regex)               should return [ 'aaa' ]
+  "_x_x_ --- ~~|~~".match(regex)         should return [ '_x_x_' ]
+  "ABCDCBA ABABABA".match(regex)         should return [ 'ABCDCBA', 'ABABABA' ]
+  "121 1221 13577531 11211".match(regex) should return [ '121', '1221', '11211' ]
+  "aabbbcccc d".match(regex)             should return null
+  "1    1".match(regex)                  should return null 
+  "abbA CdDc".match(regex)               should return null  */
+
+let regex=/\b(\w)(\w)?(\w)?\w?\3\2\1\b/g;
+
+
+
+
+//#48         Regular Expression--(?:), (?=) and (?!)
+/*Your task is coding in function addCommas. Function accepts 2 parameters: money and 
+reg. money is a string, it only contains "$" and numbers. To avoid someone being lazy, 
+so you should defined a regular expression outside function, its name should be regex. It 
+will passed to the function as parameter reg. You can write code that uses this regular 
+expression in the function, such as using replace() or other methods.
+
+Some examples:
+
+  addCommas("$123",regex) should return "$123"
+  addCommas("$1234",regex) should return "$1,234"
+  addCommas("$12345",regex) should return "$12,345"
+  addCommas("$1234567",regex) should return "$1,234,567"
+  addCommas("$123456789",regex) should return "$123,456,789"   */
+
+let regex=/\d(?=(\d{3})+$)/g;
+
+function addCommas(money,reg){
+  return money.replace(reg,x=>x+",");
+}
