@@ -160,3 +160,73 @@ id
 name
 You should return all product fields as well as the company name as "company_name".*/
 SELECT p.*, c.name AS "company_name" FROM products AS p LEFT JOIN companies AS c ON p.company_id = c.id;
+
+
+
+
+#12 SQL Basics: Simple UNION ALL
+/*For this challenge you need to create a UNION statement, there are two tables 
+ussales and eusales the parent company tracks each sale at its respective location 
+in each table, you must all filter the sale price so it only returns rows with a sale 
+greater than 50.00. You have been tasked with combining that data for future analysis. 
+Order by US then EU sales.
+
+(us/eu)sales table schema
+
+id
+name
+price
+card_name
+card_number
+transaction_date
+resultant table schema
+
+location (EU for eusales and US for ussales)
+id
+name
+price (greater than 50.00)
+card_name
+card_number
+transaction_date  */
+
+SELECT 'US' AS location, * 
+  FROM ussales 
+  WHERE price > 50.00 
+UNION ALL 
+SELECT 'EU' AS location, * 
+  FROM eusales 
+  WHERE price > 50.00;
+
+
+#13    SQL Basics: Simple table totaling.
+/*For this challenge you need to create a simple query to display each unique clan with 
+their total points and ranked by their total points.
+
+people table schema
+
+name
+points
+clan
+You should then return a table that resembles below
+
+select on
+
+rank
+clan
+total_points
+total_people
+The query must rank each clan by their total_points, you must return each unqiue clan 
+and if there is no clan name you must replace it with [no clan specified], you must 
+sum the total_points for each clan and the total_people within that clan.*/
+
+SELECT
+  ROW_NUMBER() over(ORDER BY SUM(points) DESC) rank,
+  CASE WHEN clan = ''
+    THEN '[no clan specified]'
+    ELSE clan
+  END as clan,
+  SUM(points) as total_points,
+  COUNT(*) as total_people
+FROM people
+GROUP BY clan
+ORDER BY total_points DESC
