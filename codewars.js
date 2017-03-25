@@ -1404,4 +1404,46 @@ const number = function(busStops){
 }
 
 
-//#51
+//#51     Count of positives / sum of negatives
+/*Given an array of integers.
+
+Return an array, where the first element is the count of positives numbers and the 
+second element is sum of negative numbers.
+
+If the input array is empty or null, return an empty array.   */
+
+function countPositivesSumNegatives(input) {
+  let countOfPos = 0;
+  let sumOfNeg = 0;
+  if(input === null || input.length === 0){ 
+    return [];
+  }
+  for(let i = 0; i < input.length; i++){
+    if(input[i] < 0){
+      sumOfNeg += input[i];
+    } else if(input[i] > 0) {
+      countOfPos += 1;
+    }
+  }
+    return [countOfPos, sumOfNeg];
+}
+
+
+
+//#52 They say that only the name is long enough to attract attention. 
+//They also said that only a simple Kata will have someone to solve it. 
+//This is a sadly story #1: Are they opposite?
+/*return true; otherwise, return false. Note: The result should be a boolean value, 
+instead of a string.
+The opposite means: All letters of the two strings are the same, but the case is opposite. 
+you can assume that the string only contains letters or it's a empty string */
+
+function isOpposite(s1,s2){
+  if(s1 === s2 || s1.toLowerCase() !== s2.toLowerCase()) return false;
+  
+  for(var i = 0; i < s1.length; i++) {
+    if(s1.charAt(i) === s2.charAt(i)) return false;
+  }
+  return true;
+  
+}
