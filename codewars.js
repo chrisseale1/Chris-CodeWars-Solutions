@@ -1445,5 +1445,52 @@ function isOpposite(s1,s2){
     if(s1.charAt(i) === s2.charAt(i)) return false;
   }
   return true;
-  
+}
+
+
+
+//#53         Find the position!
+/*When provided with a letter, return its position in the alphabet.
+Input :: "a"
+Ouput :: "Position of alphabet: 1"    */
+
+function position(letter){
+  let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  return "Position of alphabet: " + (alphabet.indexOf(letter) + 1);
+}
+
+
+
+//#54     What's up next?
+/*Given a sequence of items and a specific item in that sequence, return the item 
+immediately following the item specified. If the item occurs more than once in a 
+sequence, return the item after the first occurence. This should work for a sequence 
+of any type.
+
+When the item isn't present or nothing follows it, the function should return nil in 
+Clojure and Elixir, Nothing in Haskell, undefined in JavaScript.      */
+function nextItem(xs, item) {
+  let found = false;
+  for (var x of xs) {
+    if (found) return x;
+    if (x === item) found = true;
+  }
+  return undefined;
+}
+
+
+
+//#55      Sum of positive
+/*You get an array of numbers, return the sum of all of the positives ones.
+
+Example [1,-4,7,12] => 1 + 7 + 12 = 20  */
+
+function positiveSum(arr) {
+  let sum = 0;
+  for(let i = 0; i < arr.length; i++){
+    if (arr[i] > 0){
+      sum += arr[i];
+    }
+  }
+  return sum;
 }
