@@ -1573,3 +1573,7 @@ function DNAtoRNA(dna) {
   let rna = rnaArray.join("");
   return rna;
 }
+//or more quickly
+function DNAtoRNA(dna) {
+  return dna.split("T").join("U");
+}
