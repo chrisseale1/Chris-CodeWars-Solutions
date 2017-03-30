@@ -23,4 +23,16 @@ namespace Solution
 }
 
 
-//#2
+//#2   Multiply
+//This code does not execute properly. Repair.
+// public class CustomMath {
+//     public static int multiply(int a, string b) {
+//         return a * b;
+//     }
+// }
+public class CustomMath {
+    public static int multiply(int a, intb)
+    {
+        return a * b;
+    }
+}

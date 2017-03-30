@@ -1469,6 +1469,7 @@ of any type.
 
 When the item isn't present or nothing follows it, the function should return nil in 
 Clojure and Elixir, Nothing in Haskell, undefined in JavaScript.      */
+
 function nextItem(xs, item) {
   let found = false;
   for (var x of xs) {
@@ -1493,4 +1494,82 @@ function positiveSum(arr) {
     }
   }
   return sum;
+}
+
+
+//#56   Beginner - Reduce but Grow
+/*Given and array of integers (x), 
+return the result of multiplying the values together in order. Example:*/
+
+function grow(x){
+  return x.reduce((a,b)=> a*b);
+}
+
+
+
+
+//#57    Keep Hydrated
+/* Nathan loves cycling.
+
+Because Nathan knows it is important to stay hydrated, he drinks 0.5 litres 
+of water per hour of cycling.
+
+You get given the time and you need to return the number of litres Nathan will 
+drink, rounded to the smallest value.
+
+For example:
+
+time = 3 ----> litres = 1
+
+time = 6.7---> litres = 3
+
+time = 11.8--> litres = 5  */
+
+function litres(time) {
+  return Math.floor(time / 2);
+}
+
+
+
+//#58  Exclamation marks series #6: 
+//Remove n exclamation marks in the sentence from left to right
+/* Remove n exclamation marks in the sentence from left to right. 
+n is positive integer. */
+
+function remove(s,n){
+  for (let i = 0;i < n; i++) {
+    s = s.replace("!","");
+  } 
+  return s;
+}
+
+
+
+
+//#59   DNA to RNA Conversion
+/*Deoxyribonucleic acid, DNA is the primary information storage molecule in 
+biological systems. It is composed of four nucleic acid bases Guanine ('G'), 
+Cytosine ('C'), Adenine ('A'), and Thymine ('T').
+
+Ribonucleic acid, RNA, is the primary messenger molecule in cells.
+RNA differs slightly from DNA its chemical structure and contains no 
+Thymine. In RNA Thymine is replaced by another nucleic acid Uracil ('U').
+
+Create a funciton which translates a given DNA string into RNA.
+
+For example:
+
+DNAtoRNA("GCAT") returns ("GCAU") */
+function DNAtoRNA(dna) {
+  let dnaArray = dna.split("");
+  let rnaArray = [];
+  for(let i = 0; i < dnaArray.length; i++){
+    if(dnaArray[i] === "T"){
+      rnaArray.push("U");
+    } else {
+      rnaArray.push(dnaArray[i]);
+    }
+  }
+  let rna = rnaArray.join("");
+  return rna;
 }
