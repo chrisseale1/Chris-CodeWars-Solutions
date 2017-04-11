@@ -1577,3 +1577,70 @@ function DNAtoRNA(dna) {
 function DNAtoRNA(dna) {
   return dna.split("T").join("U");
 }
+
+
+
+//#60  Beginner - Lost Without a Map
+/*Given and array of integers (x), return the array with each value doubled. Example:
+
+[1, 2, 3] --> [2, 4, 6]
+
+For the beginner, try to use the map method - it comes in very handy quite a lot 
+so is a good one to know.   */
+
+function maps(x){
+  return x.map(function(num){
+    return num*2;
+  });
+}
+//or
+function maps(x){
+  return x.map((num) => num * 2);
+}
+
+
+
+
+//61  Well of Ideas
+/*In this kata you need to check the provided array (x) for good ideas 'good' and 
+bad ideas 'bad'. If there are one or two good ideas, return 'Publish!', if there 
+are more than 2 return 'I smell a series!'. If there are no good ideas, as is often 
+the case, return 'Fail!'.  */
+
+function well(x){
+  let goodCount = 0;
+  let badCount = 0;
+  for(let i = 0; i < x.length; i++){
+    if(x[i]==="good"){
+      goodCount += 1;
+    } else {
+      badCount += 1;
+    }
+  }
+  if(goodCount <= 2 && goodCount > 0){
+    return "Publish!";
+  } else if(goodCount > 2){
+    return "I smell a series!";
+  } else {
+    return "Fail!"
+  }
+}
+
+
+
+//62    Calculate BMI
+/*Write function bmi that calculates body mass index (bmi = weight / height ^ 2).
+
+if bmi <= 18.5 return "Underweight"
+
+if bmi <= 25.0 return "Normal"
+
+if bmi <= 30.0 return "Overweight"
+
+if bmi > 30 return "Obese" */
+function bmi(weight, height) {
+  const bmi = weight/(height*height);
+  return (bmi <= 18.5) ? "Underweight": 
+         (bmi <= 25.0) ? "Normal": 
+         (bmi <= 30.0) ? "Overweight": "Obese";
+}
