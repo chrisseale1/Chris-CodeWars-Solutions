@@ -1644,3 +1644,63 @@ function bmi(weight, height) {
          (bmi <= 25.0) ? "Normal": 
          (bmi <= 30.0) ? "Overweight": "Obese";
 }
+
+
+
+//#63      Filling an array (part 1)
+/*We want an array, but not just any old array, an array with contents!
+
+Write a function that produces an array with the numbers 0 to N-1 in it.
+
+For example, the following code will result in an array containing the numbers 0 to 4: */
+function arr(N){
+ let newArray = [];
+ let count = 0;
+ while(count < N){
+   newArray.push(count);
+   count += 1;
+ }
+ return newArray;
+};
+
+
+
+//#64     Remove duplicates from list
+/*Write function distinct that removes duplicate from list of numbers.
+
+The order of the sequence needs to stay the same. */
+function distinct(a) {
+  return Array.from(new Set(a));
+}
+
+
+
+//#65   Plurals
+/*We need a simple function that determines if a plural is needed or not. It should take a number, and return true if a plural should be used with that number or false if not. This would be useful when printing out a string such as 5 minutes, 14 apples, or 1 sun.
+
+You only need to worry about english grammar rules for this kata, where anything that isn't singular (one of something), it is plural (not one of something).
+All values will be positive integers or floats, or zero.*/
+function plural(n) {
+  if(n === 1){
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+
+//#67   Opposites Attract
+/*Timmy & Sarah think they are in love, but around where they live, they will only know 
+once they pick a flower each. If one of the flowers has an even number of petals and the 
+other has an odd number of petals it means they are in love.
+
+Write a function that will take the number of petals of each flower and return true if 
+they are in love and false if they aren't.  */
+function lovefunc(flower1, flower2){
+  if(flower1 % 2 === 0 && flower2 % 2 !== 0 || flower2 % 2 === 0 && flower1 % 2 !== 0){
+    return true;
+  } else {
+    return false;
+  }
+}
