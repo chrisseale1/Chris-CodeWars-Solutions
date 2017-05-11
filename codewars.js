@@ -1704,3 +1704,90 @@ function lovefunc(flower1, flower2){
     return false;
   }
 }
+
+
+
+//68   String Cleaning
+/*seems to capture words okay, but you quickly notice that it throws in a lot of numbers at random places in the text. For example:
+
+stringClean('! !') == '! !'
+stringClean('123456789') == ''
+stringClean('This looks5 grea8t!') == 'This looks great!'
+Your harried co-workers are looking to you for a solution to take this 
+garbled text and remove all of the numbers. Your program will take in a 
+string and clean out all numeric characters, and return a string with 
+spacing and special characters ~#$%^&!@*():;"'.,? all intact.*/
+
+function stringClean(s){
+  return s.replace(/[0-9]/g, '');
+}
+
+
+//69  My head is at the wrong end
+/*You're at the zoo... all the meerkats look weird. Something has gone terribly wrong - someone 
+has gone and switched their heads and tails around!
+
+Save the animals by switching them back. You will be given an array which will have three values 
+(tail, body, head). It is your job to re-arrange the array so that the animal is the right way 
+round (head, body, tail).
+
+Same goes for all the other arrays/lists that you will get in the tests: you have to change the 
+element positions with the same exact logics - simples!*/
+
+function fixTheMeerkat(arr) {
+  return [arr[2], arr[1], arr[0]];
+}
+
+
+//70  Finish Guess the Number Game
+/*Imagine you are creating a game where the user has to guess the correct number. But there is a limit of how many guesses the user can do.
+
+If the user tries to guess more than the limit the function show throw an error
+If the user guess wrong it should lose a life and return false (if you guess correctly you shouldn't remove a life)
+If the user guess right it should return true
+Can you finish the game so all the rules are met?*/
+
+class Guesser {
+  constructor(number, lives) {
+    this.number = number;
+    this.lives = lives;
+  }
+  
+  guess(n) {
+    if (this.lives <= 0) {
+      throw 'Expect error already dead';
+      }
+      
+    if (this.number === n) {
+      return true;
+    } else {
+      this.lives--; 
+      return false;
+    }
+  
+    // return false;
+  }
+  
+}
+
+
+//71  Find the first non-consecutive number 
+/*Your task is to find the first element of an array that is not consecutive.
+
+E.g. If we have an array [1,2,3,4,6,7,8] then 1 then 2 then 3 then 4 are all consecutive but 6 
+is not, so that's the first non consecutive number.
+
+If the whole array is consecutive then return null
+
+The array will always have at least 2 elements and all the elements will be numbers. The numbers 
+will also all be unique and in ascending order. The numbers could be positive or negetive and 
+the first non-consecutive could be either too!*/
+
+function firstNonConsecutive(arr) {
+  for (let i = 0; i < arr.length - 1; ++i) {
+    if (arr[i] + 1 !== arr[i + 1]) {
+      return arr[i + 1]
+    }
+  }
+  return null
+}
